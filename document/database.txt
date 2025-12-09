@@ -1,0 +1,52 @@
+CREATE DATABASE IF NOT EXISTS gallery;
+USE gallery;
+
+CREATE TABLE gallery_user (
+    UserID INT(11) AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    NamaLengkap VARCHAR(255),
+    Alamat TEXT,
+    Level ENUM('Admin','User') NOT NULL DEFAULT 'User'
+);
+
+CREATE TABLE gallery_album (
+    AlbumID INT(11) AUTO_INCREMENT PRIMARY KEY,
+    NamaAlbum VARCHAR(255) NOT NULL,
+    Deskripsi TEXT,
+    TanggalDibuat DATE,
+    UserID INT(11),
+    FOREIGN KEY (UserID) REFERENCES gallery_user(UserID) ON DELETE CASCADE
+);
+
+CREATE TABLE gallery_foto (
+    FotoID INT(11) AUTO_INCREMENT PRIMARY KEY,
+    JudulFoto VARCHAR(255),
+    DeskripsiFoto TEXT,
+    TanggalUnggah DATE,
+    LokasiFile VARCHAR(255),
+    AlbumID INT(11),
+    UserID INT(11),
+    FOREIGN KEY (AlbumID) REFERENCES gallery_album(AlbumID) ON DELETE CASCADE,
+    FOREIGN KEY (UserID) REFERENCES gallery_user(UserID) ON DELETE CASCADE
+);
+
+CREATE TABLE gallery_komentarfoto (
+    KomentarID INT(11) AUTO_INCREMENT PRIMARY KEY,
+    FotoID INT(11),
+    UserID INT(11),
+    IsiKomentar TEXT,
+    TanggalKomentar DATE,
+    FOREIGN KEY (FotoID) REFERENCES gallery_foto(FotoID) ON DELETE CASCADE,
+    FOREIGN KEY (UserID) REFERENCES gallery_user(UserID) ON DELETE CASCADE
+);
+
+CREATE TABLE gallery_likefoto (
+    LikeID INT(11) AUTO_INCREMENT PRIMARY KEY,
+    FotoID INT(11),
+    UserID INT(11),
+    TanggalLike DATE,
+    FOREIGN KEY (FotoID) REFERENCES gallery_foto(FotoID) ON DELETE CASCADE,
+    FOREIGN KEY (UserID) REFERENCES gallery_user(UserID) ON DELETE CASCADE
+);
