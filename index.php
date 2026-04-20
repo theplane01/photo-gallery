@@ -890,7 +890,7 @@ $current_page = 'index.php';
             
             <div class="border-t border-gray-800 mt-6 pt-6 text-center">
                 <p class="text-gray-400">&copy; <?php echo date('Y'); ?> PhotoGallery. All rights reserved.</p>
-                <p class="text-gray-500 text-sm mt-2">Made with <i class="fas fa-heart text-red-500"></i> for photography lovers</p>
+                <p class="text-gray-500 text-sm mt-2">Made with <i class="fas fa-heart text-red-500"></i> from isan for photography lovers</p>
             </div>
         </div>
     </footer>

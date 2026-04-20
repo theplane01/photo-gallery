@@ -26,7 +26,7 @@ $types = "";
 
 // Add search filter
 if (!empty($search_query)) {
-    $base_sql .= " AND (f.JudulFoto LIKE ? OR f.deskripsi_foto LIKE ? OR u.Username LIKE ?)";
+    $base_sql .= " AND (f.JudulFoto LIKE ? OR f.DeskripsiFoto LIKE ? OR u.Username LIKE ?)";
     $search_term = "%{$search_query}%";
     $params = array_merge($params, [$search_term, $search_term, $search_term]);
     $types .= "sss";
@@ -79,7 +79,7 @@ $photos = $stmt->get_result();
 // Get total count for pagination
 $count_sql = "SELECT COUNT(*) as total FROM gallery_foto f WHERE 1=1";
 if (!empty($search_query)) {
-    $count_sql .= " AND (f.JudulFoto LIKE ? OR f.deskripsi_foto LIKE ?)";
+    $count_sql .= " AND (f.JudulFoto LIKE ? OR f.DeskripsiFoto LIKE ?)";
     $count_stmt = $db->conn->prepare($count_sql);
     $search_term = "%{$search_query}%";
     $count_stmt->bind_param("ss", $search_term, $search_term);

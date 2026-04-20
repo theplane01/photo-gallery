@@ -219,31 +219,35 @@ $existing_comments = $comments_stmt->get_result();
                 </div>
 
                 <!-- Admin Actions -->
-                <?php if ($is_logged_in && ($_SESSION['user_id'] == $photo['UserID'] || isAdmin())): ?>
-                    <div class="border-t border-gray-700 pt-6">
-                        <h3 class="text-lg font-semibold text-gray-300 mb-4 flex items-center">
-                            <i class="fas fa-cog text-gray-500 mr-2"></i>
-                            Photo Management
-                        </h3>
-                        <div class="flex space-x-3">
-                            <?php if ($_SESSION['user_id'] == $photo['UserID'] || isAdmin()): ?>
-                                <a href="edit_photo.php?id=<?php echo $photo['FotoID']; ?>" 
-                                   class="flex items-center space-x-2 bg-gradient-to-r from-yellow-600 to-amber-700 text-white px-5 py-2.5 rounded-xl hover:from-yellow-700 hover:to-amber-800 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md">
-                                    <i class="fas fa-edit"></i>
-                                    <span>Edit Photo</span>
-                                </a>
-                            <?php endif; ?>
-                            <?php if (isAdmin()): ?>
-                                <a href="../process/delete_photo.php?id=<?php echo $photo['FotoID']; ?>" 
-                                   class="flex items-center space-x-2 bg-gradient-to-r from-red-600 to-rose-700 text-white px-5 py-2.5 rounded-xl hover:from-red-700 hover:to-rose-800 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
-                                   onclick="return confirm('Are you sure you want to delete this photo?')">
-                                    <i class="fas fa-trash"></i>
-                                    <span>Delete Photo</span>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                <!-- Photo Management -->
+<?php if ($is_logged_in && ($_SESSION['user_id'] == $photo['UserID'] || isAdmin())): ?>
+    <div class="border-t border-gray-700 pt-6">
+        <h3 class="text-lg font-semibold text-gray-300 mb-4 flex items-center">
+            <i class="fas fa-cog text-gray-500 mr-2"></i>
+            Photo Management
+        </h3>
+        <div class="flex space-x-3">
+            <!-- Edit Button (untuk pemilik foto atau admin) -->
+            <?php if ($_SESSION['user_id'] == $photo['UserID'] || isAdmin()): ?>
+                <a href="edit_photo.php?id=<?php echo $photo['FotoID']; ?>" 
+                   class="flex items-center space-x-2 bg-gradient-to-r from-yellow-600 to-amber-700 text-white px-5 py-2.5 rounded-xl hover:from-yellow-700 hover:to-amber-800 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md">
+                    <i class="fas fa-edit"></i>
+                    <span>Edit Photo</span>
+                </a>
+            <?php endif; ?>
+            
+            <!-- Delete Button (untuk pemilik foto atau admin) -->
+            <?php if ($_SESSION['user_id'] == $photo['UserID'] || isAdmin()): ?>
+                <a href="../process/delete_photo.php?id=<?php echo $photo['FotoID']; ?>" 
+                   class="flex items-center space-x-2 bg-gradient-to-r from-red-600 to-rose-700 text-white px-5 py-2.5 rounded-xl hover:from-red-700 hover:to-rose-800 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
+                   onclick="return confirm('Apakah Anda yakin ingin menghapus foto ini?')">
+                    <i class="fas fa-trash"></i>
+                    <span>Delete Photo</span>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
             </div>
         </div>
     </div>

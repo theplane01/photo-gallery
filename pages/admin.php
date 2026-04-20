@@ -32,7 +32,7 @@ if (isset($_POST['update_role'])) {
         }
     }
     
-    header("Location: admin.php");
+    // header("Location: admin.php");
     exit();
 }
 
@@ -54,7 +54,7 @@ if (isset($_GET['delete_id'])) {
         }
     }
     
-    header("Location: admin.php");
+    // header("Location: admin.php");   
     exit();
 }
 
