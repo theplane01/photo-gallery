@@ -9,7 +9,7 @@
     </div>
 
     <!-- Photo Detail Content -->
-    <template v-else-if="photo">
+    <div v-else-if="photo">
       <!-- Breadcrumb -->
       <div class="breadcrumb">
         <router-link to="/" class="breadcrumb-link">
@@ -189,7 +189,7 @@
           </div>
         </div>
       </section>
-    </template>
+    </div>
 
     <!-- Error State -->
     <div v-else class="error-container">
