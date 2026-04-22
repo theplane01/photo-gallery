@@ -7,14 +7,18 @@
   "outputDirectory": "dist",
   "routes": [
     {
-      "src": "^/assets/.*",
+      "src": "^/assets/.*\\.(?:js|css|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|ico)$",
       "dest": "/assets/$1",
       "headers": {
         "Cache-Control": "public, max-age=31536000, immutable"
       }
     },
     {
-      "src": "^/.*",
+      "src": "^/.*\\.(?:js|css|json|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|gif|webp|ico|map)$",
+      "dest": "/$1"
+    },
+    {
+      "src": "^/(?!assets/|.*\\.\\w+$)",
       "dest": "/index.html"
     }
   ]
